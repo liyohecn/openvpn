@@ -1,6 +1,8 @@
 # openvpn-as安装
 
 > openvpn-as 2.9.0 版本安装激活
+>
+> 本文档 以 Ubuntu 18.04 为例
 
 
 
@@ -35,6 +37,13 @@ apt-get install -y bridge-utils file gnupg iproute2 iptables libatm1 libelf1 lib
 ## 安装软件
 
 ```bash
+# 下载 bundled-clients（文件过大GitHub未上传，下载需要翻墙）
+wget https://swupdate.openvpn.net/as/clients/openvpn-as-bundled-clients-25.deb
+
+# 下载 openvpn-as (software中已经包含) 
+# wget https://swupdate.openvpn.net/as/openvpn-as_2.9.0-5c5bd120-Ubuntu18_amd64.deb
+
+# 安装
 dpkg -i openvpn-as-bundled-clients-25.deb openvpn-as_2.9.0-5c5bd120-Ubuntu18_amd64.deb
 ```
 
