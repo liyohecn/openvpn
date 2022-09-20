@@ -1,0 +1,17 @@
+version: '2'
+services:
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    environment:
+      DEBUG: '1'
+    command: /script/run.sh
+    volumes:
+      - ./script:/script
+      - ./conf:/etc/openvpn
+    ports:
+      - 1194:1194

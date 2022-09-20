@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  autossh-console:
+    image: jnovack/autossh
+    container_name: autossh-console
+    environment:
+      - SSH_MODE=-R
+      - SSH_REMOTE_USER=root
+      - SSH_REMOTE_HOST=112.112.112.112
+      - SSH_REMOTE_PORT=22
+      - SSH_BIND_IP:127.0.0.1
+      - SSH_TUNNEL_PORT=22
+      - SSH_TARGET_HOST=172.17.0.1
+      - SSH_TARGET_PORT=22
+    restart: always
+    volumes:
+      - /root/.ssh/id_rsa:/id_rsa
+      - /root/.ssh/known_hosts:/known_hosts
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  autossh-openvpn:
+    image: jnovack/autossh
+    container_name: autossh-openvpn
+    environment:
+      - SSH_MODE=-R
+      - SSH_REMOTE_USER=root
+      - SSH_REMOTE_HOST=112.112.112.112
+      - SSH_REMOTE_PORT=22
+      - SSH_BIND_IP:0.0.0.0
+      - SSH_TUNNEL_PORT=1194
+      - SSH_TARGET_HOST=172.17.0.1
+      - SSH_TARGET_PORT=1194
+    restart: always
+    volumes:
+      - /root/.ssh/id_rsa:/id_rsa
+      - /root/.ssh/known_hosts:/known_hosts
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
